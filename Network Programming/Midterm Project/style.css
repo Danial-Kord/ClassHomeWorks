@@ -1,0 +1,64 @@
+
+@@keyframes delay {
+  0% {}
+  100% {}
+}
+
+@keyframes titleAnimation {
+  0%   {font-size:  48px}
+  50%  {font-size:  64px}
+  100% {font-size:  48px}
+}
+
+
+body{
+background-image: url(./Resources/Background.jpg);
+background-position:center center;
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size:cover;
+display: grid;
+grid-template-rows: 300px;
+}
+
+#title{
+  font-size:  48px;
+  text-align: center;
+  -webkit-text-stroke: 0.3px black;
+  color: yellow;
+  animation-name: titleAnimation;
+  animation-duration: 2s;
+  animation-delay: 1.5s;
+}
+
+#box{
+  margin: auto;
+  padding: 10px 10px 10px 10px;
+  display:table;
+  border-style: solid;
+  border-width: 5px;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+dt{
+  font-size: 24px;
+  font-style: oblique;
+}
+
+dd{
+  padding: 0px 0px 0px 0px;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+.result>*{
+    padding: 0px 0px 0px 50px;
+    margin: 0px 0px 0px 0px;
+}
+
+
+::selection {
+  color: red;
+  background: #FF5E99;
+}
