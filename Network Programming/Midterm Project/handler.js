@@ -18,6 +18,8 @@ function calculateData(data) {
     for (x in data) {
         text = x + " : " + data[x];
         let newElement = document.createElement("dd");
+        newElement.className = "responce";
+        newElement.style = document.styleSheets;
         newElement.innerHTML = text;
         dadElemnt.appendChild(newElement);
         i++;

@@ -16,7 +16,7 @@ background-attachment: fixed;
 background-repeat: no-repeat;
 background-size:cover;
 display: grid;
-grid-template-rows: 300px;
+grid-template-rows: 150px 500px;
 }
 
 /* title of the page defult setting with text font and position peroperties assigning and animation setup */
@@ -42,6 +42,7 @@ grid-template-rows: 300px;
   display: flex; /* after the table there is a result
   elemnt as div and needs to be in horizontal sequence*/
   background-color: rgba(255, 255, 255, 0.5); /* for backdound alpha */
+  border-radius: 10px;
 }
 
 /* reults title setup */
@@ -52,27 +53,54 @@ dt{
   font-weight: bold;
 }
 
+/* special font for responce data */
+@font-face {
+    font-family: "resultFont";
+    src: url("./Resources/ahellya.ttf");
+}
+
 /* Results text look like */
 dd{
   padding: 0px 0px 0px 0px;
   margin-left: 15px; /*decriesing the amount of defult left margin of dd*/
-  font-size: 20px;
+  font-size: 25px;
+  font-family: resultFont;
+  color: darkblue;
+  -webkit-text-stroke: 0.2px black;
 }
 
 /* table elememts setup */
+table{
+  padding: 0 40px 0px 10px;
+}
 td{
   text-decoration-line: underline;
   font-size: 20px;
 }
 
-/* all results data should be shift to right for better view */
+
+
+/* managing layout of result section for better view */
+#result{
+border-left: 2px solid black;
+}
+
 #result>*{
-    padding: 0px 0px 0px 50px;
+  padding: 0px 20px 0px 50px;
     margin: 0px 0px 0px 0px;
+    text-align: center;
+    padding: inherit;
+}
+/* handling responce view */
+.responce{
+  background-color: rgba(255, 200, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 5px;
 }
 
 /* selection elements of the page setup */
 ::selection {
   color: red;
   background: #FF5E99;
+  font-size: 2em;
 }
