@@ -31,7 +31,6 @@ function calculateData(data, pageIndex) {
 
 // fetching data from the api and calculationg responce data
 function getData(index) {
-    window.alert("fetching " + index);
     fetch("https://swapi.dev/api/starships/?page=1")
         .then((resp) => resp.json())
         .then((data) => calculateData(data, index))
@@ -63,7 +62,6 @@ function startUp() {
     let tableClick = document.getElementsByTagName("td");
     for (let i = 0; i < tableClick.length; i++) {
         tableClick[i].onclick = () => {
-            window.alert("ss")
             getData(i);
         }
     }
