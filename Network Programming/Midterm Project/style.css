@@ -38,6 +38,7 @@ grid-template-rows: 150px 500px;
   padding: 10px 10px 10px 20px; /* more space from left site for better presenting of dotted text */
   border-style:double;
   border-width: 3px;
+  height: 490px;
   display: flex; /* after the table there is a result
   elemnt as div and needs to be in horizontal sequence*/
   background-color: rgba(255, 255, 255, 0.5); /* for backdound alpha */
@@ -62,7 +63,7 @@ dt{
 dd{
   padding: 0px 0px 0px 0px;
   margin-left: 15px; /*decriesing the amount of defult left margin of dd*/
-  font-size: 25px;
+  font-size: 22px;
   font-family: resultFont;
   color: darkblue;
   -webkit-text-stroke: 0.2px black;
@@ -83,12 +84,16 @@ border-left: 2px solid black;
 #result>*{
     margin: 0px 20px 0px 40px;
     text-align: center;
+    width: 800px;
 }
 /* handling responce view */
 .responce{
   background-color: rgba(255, 200, 0, 0.4);
   border-radius: 10px;
   margin-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 
 /* selection elements of the page setup */
