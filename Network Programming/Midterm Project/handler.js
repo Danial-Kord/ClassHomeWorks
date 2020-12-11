@@ -1,5 +1,5 @@
-var maxfontSize = 30;
-var minfontsize = 24;
+const maxDataShow = 8;
+
 // parsing json data elemnts for presenting in result box of the page
 function calculateData(data, pageIndex) {
     i = 1;
@@ -23,10 +23,33 @@ function calculateData(data, pageIndex) {
         newElement.innerHTML = text;
         dadElemnt.appendChild(newElement);
         i++;
-        if (i == 14) {
+        if (i == maxDataShow) {
             break;
         }
     }
+    films = data["films"]
+        //find films
+    for (x in films) {
+        fetch(films[x]).then((response) => {
+                if (!response.ok) {
+                    window.alert("Network response was not ok\n CODE:, " + response.status);
+                    throw new Error(
+                        "Network response was not ok\n CODE:, " + response.status
+                    );
+                }
+                return response;
+            }).then((resp) => resp.json())
+            .then((data) => {
+                text = "film : " + data["title"];
+                let newElement = document.createElement("dd");
+                newElement.className = "responce";
+                newElement.style = document.styleSheets;
+                newElement.innerHTML = text;
+                dadElemnt.appendChild(newElement);
+            })
+            .catch();
+    }
+
 }
 //check if request timeout throw error
 //set a timer and if the responce comes quicker than timeout it will do the rest of tasks otherwise will return new Error
@@ -77,14 +100,35 @@ while (i < tableData.length) {
 }
 
 // setting all table row events
-function startUp() {
+function startUp(array) {
     // handling on click event
     let tableClick = document.getElementsByTagName("td");
     for (let i = 0; i < tableClick.length; i++) {
+        tableClick[i].innerHTML = array[i];
         tableClick[i].onclick = () => {
             getData(i);
         }
     }
 }
 
-startUp();
+timeout(10000, fetch("https://swapi.dev/api/starships/?page=1")).then((response) => {
+        if (!response.ok) {
+            window.alert("Network response was not ok\n CODE:, " + response.status);
+            throw new Error(
+                "Network response was not ok\n CODE:, " + response.status
+            );
+        }
+        return response;
+    }).then((resp) => resp.json())
+    .then((data) => {
+        let a = [];
+        for (let i = 0; i < 10; i++) {
+            let temp = data["results"][i];
+            a.push(temp["name"]);
+        }
+        startUp(a);
+    })
+    .catch(function(error) {
+        window.alert("check your connection");
+
+    })
