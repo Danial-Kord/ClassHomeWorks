@@ -83,17 +83,22 @@ function getData(index) {
 }
 
 var currentPageIndex = 1;
-const maxPages = 3;
+const maxPages = 4;
 
 
 // setting all table row events
 function startUp(array) {
     // handling on click event
+
     let tableClick = document.getElementsByTagName("td");
     for (let i = 0; i < tableClick.length; i++) {
-        tableClick[i].innerHTML = array[i];
-        tableClick[i].onclick = () => {
-            getData(i);
+        if (array.length <= i) {
+            tableClick[i].innerHTML = "";
+        } else {
+            tableClick[i].innerHTML = array[i];
+            tableClick[i].onclick = () => {
+                getData(i);
+            }
         }
     }
 }
@@ -156,7 +161,7 @@ let buttons = document.getElementsByTagName("button");
 
 buttons[1].onclick = () => {
     currentPageIndex++;
-    if (currentPageIndex > 3) {
+    if (currentPageIndex > maxPages) {
         currentPageIndex = maxPages;
     } else { fetchTableElemnts(); }
 };

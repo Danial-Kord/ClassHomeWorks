@@ -1,140 +1,190 @@
 /* Key frames for title of the page for more dynamic result */
+
 @keyframes titleAnimation {
-  0%   {font-size:  48px}
-  50%  {font-size:  64px}
-  100% {font-size:  48px}
+    0% {
+        font-size: 48px
+    }
+    50% {
+        font-size: 64px
+    }
+    100% {
+        font-size: 48px
+    }
 }
 
 
 /* Key frames for responces data of the page for more dynamic result */
+
 @keyframes responceAnimation {
-  0%    {background-color: rgba(0, 0, 0, 0.05 );}
-  100%  {background-color: rgba(220, 186, 216, 0.6);}
+    0% {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    100% {
+        background-color: rgba(220, 186, 216, 0.7);
+    }
 }
 
+
 /* global presenting setting for page */
-*{
-  font-size: 24px;
+
+* {
+    font-size: 24px;
 }
+
+
 /* used for setting up the page main layout as grid layout and background setting */
-body{
-background-image: url(./Resources/Background.jpg);
-background-position:center center;
-background-attachment: fixed;
-background-repeat: no-repeat;
-background-size:cover;
-display: grid;
-grid-template-rows: 150px 500px;
+
+body {
+    background-image: url(./Resources/Background.jpg);
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 150px 500px;
 }
+
 
 /* title of the page defult setting with text font and position peroperties assigning and animation setup */
 
-#title{
-  font-size:  48px;
-  text-align: center;
-  -webkit-text-stroke: 0.3px black;
-  color: yellow;
-  animation-name: titleAnimation;
-  animation-duration: 2s;  /* let the main site loades before animation starts*/
-  animation-delay: 1.5s;
+#title {
+    font-size: 48px;
+    text-align: center;
+    -webkit-text-stroke: 0.3px black;
+    color: yellow;
+    animation-name: titleAnimation;
+    animation-duration: 2s;
+    /* let the main site loades before animation starts*/
+    animation-delay: 1.5s;
 }
+
 
 /* centeral box setting */
 
-#box{
-  margin: auto; /* so it be in the middle of the page */
-  padding: 10px 10px 10px 20px; /* more space from left site for better presenting of dotted text */
-  border-style:double;
-  border-width: 5px;
-  height: 490px;
-  display: flex; /* after the table there is a result
+#box {
+    margin: auto;
+    /* so it be in the middle of the page */
+    padding: 10px 10px 10px 20px;
+    /* more space from left site for better presenting of dotted text */
+    border-style: double;
+    border-width: 5px;
+    height: 490px;
+    display: flex;
+    /* after the table there is a result
   elemnt as div and needs to be in horizontal sequence*/
-  background-color: rgba(255, 255, 255, 0.5); /* for backdound alpha */
-  border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* for backdound alpha */
+    border-radius: 10px;
 }
 
+
+/* table elememts setup */
+
+table {
+    margin: 0 10px 0px 0px;
+    text-align: center;
+    font-weight: bold;
+    width: 300px;
+}
+
+
+/* table head design */
+
+th {
+    border-bottom: 2px solid blue;
+    font-size: 32px;
+}
+
+
+/* table row properties */
+
+td {
+    border-radius: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+/* ////////////////////////////////// */
+
+
+/* managing layout of result section for better view */
+
+#result {
+    border-left: 2px solid black;
+}
+
+#result_section {
+    border-bottom: 2px solid blue;
+    font-size: 32px;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+#result>* {
+    margin: 0px 20px 0px 40px;
+    text-align: center;
+    width: 800px;
+    font-weight: bold;
+}
+
+
 /* special font for responce data */
+
 @font-face {
     font-family: "resultFont";
     src: url("./Resources/ahellya.ttf");
 }
 
+
 /* Results text look like */
-dd{
-  padding: 0px 0px 0px 0px;
-  margin-left: 15px; /*decriesing the amount of defult left margin of dd*/
-  font-size: 22px;
-  font-family: resultFont;
-  color: darkblue;
-  -webkit-text-stroke: 0.2px black;
+
+dd {
+    padding: 0px 0px 0px 0px;
+    margin-left: 15px;
+    /*decriesing the amount of defult left margin of dd*/
+    font-size: 22px;
+    font-family: resultFont;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 0.1px rgb(28, 16, 71);
 }
 
-/* table elememts setup */
-table{
-  margin: 0 10px 0px 0px;
-  text-align: center;
-  font-weight: bold;
-  width: 300px;
-}
 
-/* table head design */
-th{
-  border-bottom: 2px solid blue;
-  font-size: 32px;
-}
-/* table row properties */
-td{
-  border-radius: 25px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-/* ////////////////////////////////// */
-/* managing layout of result section for better view */
-#result{
-border-left: 2px solid black;
-}
-#result_section{
-  border-bottom: 2px solid blue;
-  font-size: 32px;
-  font-style: oblique;
-  font-weight: bold;
-}
-#result>*{
-    margin: 0px 20px 0px 40px;
-    text-align: center;
-    width: 800px;
-    font-weight: bold;
-
-}
 /* /////////////////////////////////////// */
+
+
 /* handling responce view */
-.responce{
-  background-color: rgba(220, 186, 216, 0.6);
-  border-radius: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  animation-name: responceAnimation;
-  animation-duration: 2s;
+
+.responce {
+    background-color: rgba(220, 186, 216, 0.7);
+    border-radius: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    animation-name: responceAnimation;
+    animation-duration: 2s;
 }
+
+
 /* setup up button peroperties and position releative */
-button{
-  height: 50px;
-  width: 50px;
-  margin-top: 8em;
-  margin-right: 1em;
-  border-radius: 10px;
-  background-color: rgba(0,0,0,0.2);
-  background-image: url("./Resources/arrow.png");
-  background-size: cover;
+
+button {
+    height: 50px;
+    width: 50px;
+    margin-top: 8em;
+    margin-right: 1em;
+    border-radius: 10px;
+    background-color: rgba(60, 60, 60, 0.5);
+    background-image: url("./Resources/arrow.png");
+    background-size: cover;
 }
 
 
 /* selection elements of the page setup */
+
 ::selection {
-  color: red;
-  background: #FF5E99;
-  font-size: 2em;
+    color: red;
+    background: #FF5E99;
+    font-size: 2em;
 }
