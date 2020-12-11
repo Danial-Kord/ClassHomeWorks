@@ -1,9 +1,9 @@
 var maxfontSize = 30;
 var minfontsize = 24;
 // parsing json data elemnts for presenting in result box of the page
-function calculateData(data) {
+function calculateData(data, pageIndex) {
     i = 1;
-    data = data["results"][0]
+    data = data["results"][pageIndex]
         //remove old data from the page for new coming data
     dadElemnt = document.getElementById("result").children[0];
     for (let j = 1; j < dadElemnt.children.length;) {
@@ -31,10 +31,10 @@ function calculateData(data) {
 
 // fetching data from the api and calculationg responce data
 function getData(index) {
-    window.alert("fetching");
+    window.alert("fetching " + index);
     fetch("https://swapi.dev/api/starships/?page=1")
         .then((resp) => resp.json())
-        .then((data) => calculateData(data))
+        .then((data) => calculateData(data, index))
 }
 
 
@@ -57,12 +57,16 @@ while (i < tableData.length) {
     i++;
 }
 
-// handling on click event
-let tableClick = document.getElementsByTagName("td");
-let h = 0;
-while (h < tableClick.length) {
-    tableClick[h].onclick = () => {
-        getData();
+// setting all table row events
+function startUp() {
+    // handling on click event
+    let tableClick = document.getElementsByTagName("td");
+    for (let i = 0; i < tableClick.length; i++) {
+        tableClick[i].onclick = () => {
+            window.alert("ss")
+            getData(i);
+        }
     }
-    h++;
 }
+
+startUp();
