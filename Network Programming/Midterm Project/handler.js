@@ -28,12 +28,32 @@ function calculateData(data, pageIndex) {
         }
     }
 }
+//check if request timeout throw error
+//set a timer and if the responce comes quicker than timeout it will do the rest of tasks otherwise will return new Error
+function timeout(ms, promise) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => reject(new Error("timeout")), ms)
+        promise.then(resolve, reject)
+    })
+}
 
-// fetching data from the api and calculationg responce data
+// fetching data from the api and calculationg responce data and status checking
 function getData(index) {
-    fetch("https://swapi.dev/api/starships/?page=1")
-        .then((resp) => resp.json())
+    timeout(10000, fetch("https://swapi.dev/api/starships/?page=1")).then((response) => {
+            if (!response.ok) {
+                window.alert("Network response was not ok\n CODE:, " + response.status);
+                throw new Error(
+                    "Network response was not ok\n CODE:, " + response.status
+                );
+            }
+            return response;
+        }).then((resp) => resp.json())
         .then((data) => calculateData(data, index))
+        .catch(function(error) {
+            window.alert("check your connection");
+
+        })
+
 }
 
 
