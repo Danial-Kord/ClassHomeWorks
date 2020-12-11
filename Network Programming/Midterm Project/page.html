@@ -12,6 +12,9 @@
       <!-- for making better layout and easier managemnet of grid layout used a parent dive for centeral box with box ID -->
       <div id="box">
         <!-- table construction for representing options of our starships -->
+        <div>
+
+        </div>
         <table>
           <thead>
             <tr>
@@ -19,6 +22,7 @@
             </tr>
           </thead>
           <tbody>
+            <button type="button" name="left" style="transform: rotateY(180deg)"></button>
             <tr>
               <td><li>Model 1</li></td>
             </tr>
@@ -51,10 +55,11 @@
             </tr>
           </tbody>
         </table>
+        <button type="button" name="right"></button>
         <!-- result show case is here with id access for css presneting and js fetching data -->
         <div id="result">
           <dl>
-            <dt>Results</dt>
+            <dt id = "result_section">Results</dt>
           </dl>
         </div>
       </div>

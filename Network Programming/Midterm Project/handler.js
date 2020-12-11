@@ -1,4 +1,7 @@
 const maxDataShow = 8;
+const maxfontSize = 40;
+const minfontsize = 24;
+var URL = "https://swapi.dev/api/starships/?page=1"
 
 // parsing json data elemnts for presenting in result box of the page
 function calculateData(data, pageIndex) {
@@ -62,7 +65,7 @@ function timeout(ms, promise) {
 
 // fetching data from the api and calculationg responce data and status checking
 function getData(index) {
-    timeout(10000, fetch("https://swapi.dev/api/starships/?page=1")).then((response) => {
+    timeout(10000, fetch(URL)).then((response) => {
             if (!response.ok) {
                 window.alert("Network response was not ok\n CODE:, " + response.status);
                 throw new Error(
@@ -79,25 +82,9 @@ function getData(index) {
 
 }
 
+var currentPageIndex = 1;
+const maxPages = 3;
 
-/*
-setting up cursur change shape considering the location of the cursur
-with mouse events for better client experience
-*/
-let tableData = document.getElementsByTagName("td");
-let i = 0;
-while (i < tableData.length) {
-    tableData[i].onmouseenter = () => {
-        document.body.style.cursor = "pointer";
-        tableData[i].style.fontSize = maxfontSize;
-    }
-
-    tableData[i].onmouseleave = () => {
-        document.body.style.cursor = "auto";
-        tableData[i].style.fontSize = minfontsize;
-    }
-    i++;
-}
 
 // setting all table row events
 function startUp(array) {
@@ -111,24 +98,76 @@ function startUp(array) {
     }
 }
 
-timeout(10000, fetch("https://swapi.dev/api/starships/?page=1")).then((response) => {
-        if (!response.ok) {
-            window.alert("Network response was not ok\n CODE:, " + response.status);
-            throw new Error(
-                "Network response was not ok\n CODE:, " + response.status
-            );
-        }
-        return response;
-    }).then((resp) => resp.json())
-    .then((data) => {
-        let a = [];
-        for (let i = 0; i < 10; i++) {
-            let temp = data["results"][i];
-            a.push(temp["name"]);
-        }
-        startUp(a);
-    })
-    .catch(function(error) {
-        window.alert("check your connection");
 
-    })
+
+// when 2 buttons of the sides are clicked page table elemnts need to be refreshed for new elemnts
+function fetchTableElemnts() {
+    URL = "https://swapi.dev/api/starships/?page=" + currentPageIndex;
+    timeout(10000, fetch(URL)).then((response) => {
+            if (!response.ok) {
+                window.alert("Network response was not ok\n CODE:, " + response.status);
+                throw new Error(
+                    "Network response was not ok\n CODE:, " + response.status
+                );
+            }
+            return response;
+        }).then((resp) => resp.json())
+        .then((data) => {
+            let a = [];
+            for (let i = 0; i < data["results"].length; i++) {
+                let temp = data["results"][i];
+                a.push(temp["name"]);
+            }
+            startUp(a);
+        })
+        .catch(function(error) {
+            window.alert("check your connection");
+
+        })
+}
+
+
+
+
+/*
+setting up cursur change shape considering the location of the cursur
+with mouse events for better client experience
+*/
+let tableData = document.getElementsByTagName("td");
+
+
+
+for (let i = 0; i < tableData.length; i++) {
+    tableData[i].onmouseenter = () => {
+        document.body.style.cursor = "pointer";
+        tableData[i].style.fontSize = "" + maxfontSize;
+        tableData[i].style.backgroundColor = "lightblue";
+    }
+
+    tableData[i].onmouseleave = () => {
+        document.body.style.cursor = "auto";
+        tableData[i].style.fontSize = "" + minfontsize;
+        tableData[i].style.backgroundColor = "transparent";
+
+    }
+}
+
+let buttons = document.getElementsByTagName("button");
+
+buttons[1].onclick = () => {
+    currentPageIndex++;
+    if (currentPageIndex > 3) {
+        currentPageIndex = maxPages;
+    } else { fetchTableElemnts(); }
+};
+
+buttons[0].onclick = () => {
+    currentPageIndex--;
+    if (currentPageIndex < 1) {
+        currentPageIndex = 1;
+    } else {
+        fetchTableElemnts();
+    }
+};
+
+fetchTableElemnts()
