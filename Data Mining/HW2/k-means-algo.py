@@ -32,8 +32,9 @@ def k_means(data, k, max_itr):
         for i in clusters:
             i.clear()
         new_centers = copy.deepcopy(centers)
-        for index,row_data in data.iterrows():
-            row = row_data.values.tolist()
+        for row in data_list:
+
+            # row = row_data.values.tolist()
             min_index = dimention
             min_distance = -1
             for c in range(k):
@@ -43,7 +44,8 @@ def k_means(data, k, max_itr):
                     min_distance = dist
                     min_index = c
             clusters[min_index].append(row)
-            points_group[index] = min_index
+            points_group[row_index] = min_index
+            row_index += 1
         last_index =0
         #setting new centers values
         for i in range(k):
@@ -84,7 +86,7 @@ def error_calculator(data,k):
 
 if __name__=='__main__':
     data = pd.read_csv('./datasets/iris.csv')
-    data.drop('Species', inplace=True, axis=1)  # read only data points
+    data.drop('Species', inplace=True, axis=1)
     errors = []
     for k in range(1,6):
         data_copy = copy.deepcopy(data)
@@ -94,4 +96,13 @@ if __name__=='__main__':
     ax = plt.gca()
     ax.set_xlabel('k')
     ax.set_ylabel('MAE')
+    plt.show()
+
+# none convex data
+    data = pd.read_csv('./datasets/worms.csv')
+    data.drop('index', inplace=True, axis=1)
+    k_means(data, 5, 8)
+    groups = data.groupby("cluster")
+    for name,cluster in groups:
+        plt.scatter(cluster['X'], cluster['Y'], s=.0025,label=name)
     plt.show()
